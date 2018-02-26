@@ -32,6 +32,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
+	"golang.org/x/tools/go/gcimporter15/testdata"
 )
 
 // AWSAuth uses AWS roles and authentication to authenticate to Cerberus
@@ -72,7 +74,8 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 	if err != nil {
 		return nil, err
 	}
-	sess := session.Must(session.NewSession())
+	sess, err := session.NewSession(&aws.Config{Region: aws.String(region)})
+
 	if err != nil {
 		return nil, fmt.Errorf("Unable to create AWS session: %s", err)
 	}
@@ -83,9 +86,7 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 			"X-Cerberus-Client": []string{api.ClientHeader},
 			"Content-Type":      []string{"application/json"},
 		},
-		kmsClient: kms.New(sess, &aws.Config{
-			Region: aws.String(region),
-		}),
+		kmsClient: kms.New(sess),
 	}, nil
 }
 
