@@ -32,8 +32,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
-	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
-	"golang.org/x/tools/go/gcimporter15/testdata"
 )
 
 // AWSAuth uses AWS roles and authentication to authenticate to Cerberus
