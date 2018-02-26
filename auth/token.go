@@ -38,21 +38,10 @@ type TokenAuth struct {
 // expects the a valid token. The URL and token can also be set using the CERBERUS_URL
 // and CERBERUS_TOKEN environment variables. These will always take precedence over
 // any arguments to the function
-func NewTokenAuth(cerberusURL, token string) (*TokenAuth, error) {
+func NewTokenAuth(cerberusURL string) (*TokenAuth, error) {
 	// Check for the environment variable if the user has set it
 	if os.Getenv("CERBERUS_URL") != "" {
 		cerberusURL = os.Getenv("CERBERUS_URL")
-	}
-	// Check for the environment variable for the token if the user has set it
-	if os.Getenv("CERBERUS_TOKEN") != "" {
-		token = os.Getenv("CERBERUS_TOKEN")
-	}
-	// Make sure that the passed variables are not empty
-	if len(cerberusURL) == 0 {
-		return nil, fmt.Errorf("Cerberus URL cannot be empty")
-	}
-	if len(token) == 0 {
-		return nil, fmt.Errorf("Token cannot be empty")
 	}
 
 	// Parse the URL
@@ -65,11 +54,9 @@ func NewTokenAuth(cerberusURL, token string) (*TokenAuth, error) {
 	}
 	headers.Set("Content-Type", "application/json")
 	headers.Set("Accept", "application/json")
-	headers.Set("X-Vault-Token", token)
 	return &TokenAuth{
 		baseURL: parsedURL,
 		headers: headers,
-		token:   token,
 	}, nil
 }
 
