@@ -72,9 +72,7 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 	if err != nil {
 		return nil, err
 	}
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String(region),
-	})
+	sess := session.Must(session.NewSession())
 	if err != nil {
 		return nil, fmt.Errorf("Unable to create AWS session: %s", err)
 	}
@@ -85,7 +83,9 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 			"X-Cerberus-Client": []string{api.ClientHeader},
 			"Content-Type":      []string{"application/json"},
 		},
-		kmsClient: kms.New(sess),
+		kmsClient: kms.New(sess, &aws.Config{
+			Region: aws.String(region),
+		}),
 	}, nil
 }
 
