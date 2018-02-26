@@ -84,7 +84,6 @@ func NewAWSAuth(cerberusURL, roleARN, region string) (*AWSAuth, error) {
 	}
 	return &AWSAuth{
 		region:  region,
-		roleARN: roleARN,
 		baseURL: parsedURL,
 		headers: http.Header{
 			"X-Cerberus-Client": []string{api.ClientHeader},
