@@ -17,7 +17,6 @@ limitations under the License.
 package auth
 
 import (
-	"fmt"
 	"net/http"
 	"net/url"
 	"os"
