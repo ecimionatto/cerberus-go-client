@@ -28,8 +28,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/utils"
+	"github.com/ecimionatto/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/utils"
 )
 
 // UserAuth uses username and password authentication to authenticate against Cerberus

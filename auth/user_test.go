@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/api"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/api"
 )
 
 // ErrorSafeDepositBoxNotFound is returned when a specified deposit box is not found

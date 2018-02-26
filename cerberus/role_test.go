@@ -23,7 +23,7 @@ import (
 	"time"
 
 	. "github.com/smartystreets/goconvey/convey"
-	"github.com/Nike-Inc/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/api"
 )
 
 var listResponse = `[

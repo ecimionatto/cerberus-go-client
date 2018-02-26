@@ -17,7 +17,7 @@ limitations under the License.
 // Package api contains the Cerberus API object definitions
 // This is not a full implementation of every object right now
 // and only defines the needed objects for the client to function.
-// See https://github.com/Nike-Inc/cerberus-management-service/blob/master/API.md
+// See https://github.com/ecimionatto/cerberus-management-service/blob/master/API.md
 // for full documentation
 package api
 

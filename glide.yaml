@@ -1,4 +1,4 @@
-package: github.com/Nike-Inc/cerberus-go-client
+package: github.com/ecimionatto/cerberus-go-client
 import:
 - package: github.com/aws/aws-sdk-go
   version: ~1.10.1

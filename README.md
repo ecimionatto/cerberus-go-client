@@ -3,8 +3,8 @@ A Golang client for accessing Cerberus. To learn more about Cerberus, please vis
 the [Cerberus Website](http://engineering.nike.com/cerberus/).
 
 [![Build Status](https://travis-ci.org/Nike-Inc/cerberus-go-client.svg?branch=master)](https://travis-ci.org/Nike-Inc/cerberus-go-client)
-[![GoDoc](https://godoc.org/github.com/Nike-Inc/cerberus-go-client/cerberus?status.svg)](https://godoc.org/github.com/Nike-Inc/cerberus-go-client/cerberus)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Nike-Inc/cerberus-go-client)](https://goreportcard.com/report/github.com/Nike-Inc/cerberus-go-client)
+[![GoDoc](https://godoc.org/github.com/ecimionatto/cerberus-go-client/cerberus?status.svg)](https://godoc.org/github.com/ecimionatto/cerberus-go-client/cerberus)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ecimionatto/cerberus-go-client)](https://goreportcard.com/report/github.com/ecimionatto/cerberus-go-client)
 
 ## Usage
 
@@ -14,8 +14,8 @@ The simplest way to get started is to use the user authentication:
 import (
 	"fmt"
 
-	"github.com/Nike-Inc/cerberus-go-client/cerberus"
-	"github.com/Nike-Inc/cerberus-go-client/auth"
+	"github.com/ecimionatto/cerberus-go-client/cerberus"
+	"github.com/ecimionatto/cerberus-go-client/auth"
 )
 ...
 authMethod, _ := auth.NewUserAuth("https://cerberus.example.com", "my-cerberus-user", "my-password")
@@ -54,7 +54,7 @@ which will always override anything you pass to the `New*Auth` methods.
 
 #### AWS
 AWS authentication expects an IAM principal ARN and an AWS region to be able to authenticate.
-For more information, see the [API docs](https://github.com/Nike-Inc/cerberus-management-service/blob/master/API.md#app-login-v2-v2authiam-principal)
+For more information, see the [API docs](https://github.com/ecimionatto/cerberus-management-service/blob/master/API.md#app-login-v2-v2authiam-principal)
 
 ```go
 authMethod, _ := auth.NewAWSAuth("https://cerberus.example.com", "arn:aws:iam::111111111:role/cerberus-api-tester", "us-west-2")
@@ -152,9 +152,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Nike-Inc/cerberus-go-client/cerberus"
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/auth"
+	"github.com/ecimionatto/cerberus-go-client/cerberus"
+	"github.com/ecimionatto/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/auth"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

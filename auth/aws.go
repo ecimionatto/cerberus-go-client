@@ -26,8 +26,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/utils"
+	"github.com/ecimionatto/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/utils"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kms"

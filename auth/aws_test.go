@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/api"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 	. "github.com/smartystreets/goconvey/convey"

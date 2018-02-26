@@ -25,8 +25,8 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/auth"
+	"github.com/ecimionatto/cerberus-go-client/api"
+	"github.com/ecimionatto/cerberus-go-client/auth"
 	vault "github.com/hashicorp/vault/api"
 )
 
