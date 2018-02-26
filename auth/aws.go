@@ -177,9 +177,9 @@ func (a *AWSAuth) IsAuthenticated() bool {
 // Refresh refreshes the current token. For AWS Auth, this is just an alias to
 // reauthenticate against the API.
 func (a *AWSAuth) Refresh() error {
-	if !a.IsAuthenticated() {
-		return api.ErrorUnauthenticated
-	}
+	//if !a.IsAuthenticated() {
+	//	return api.ErrorUnauthenticated
+	//}
 	// A note on why we are just reauthenticating: You can refresh an AWS token,
 	// but there is a limit (24) to the number of refreshes and the API requests
 	// that you refresh your token on every SDB creation. When doing this in an
@@ -194,9 +194,9 @@ func (a *AWSAuth) Refresh() error {
 // Logout deauthorizes the current valid token. This will return an error if the token
 // is expired or non-existent
 func (a *AWSAuth) Logout() error {
-	if !a.IsAuthenticated() {
-		return api.ErrorUnauthenticated
-	}
+	//if !a.IsAuthenticated() {
+	//	return api.ErrorUnauthenticated
+	//}
 	// Use a copy of the base URL
 	if err := Logout(*a.baseURL, a.headers); err != nil {
 		return err
@@ -210,8 +210,8 @@ func (a *AWSAuth) Logout() error {
 // GetHeaders returns the headers needed to authenticate against Cerberus. This will
 // return an error if the token is expired or non-existent
 func (a *AWSAuth) GetHeaders() (http.Header, error) {
-	if !a.IsAuthenticated() {
-		return nil, api.ErrorUnauthenticated
-	}
+	//if !a.IsAuthenticated() {
+	//	return nil, api.ErrorUnauthenticated
+	//}
 	return a.headers, nil
 }

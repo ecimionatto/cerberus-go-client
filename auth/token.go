@@ -63,9 +63,9 @@ func NewTokenAuth(cerberusURL string) (*TokenAuth, error) {
 // be passed as the argument to the function. The argument exists for compatibility
 // with the Auth interface
 func (t *TokenAuth) GetToken(f *os.File) (string, error) {
-	if !t.IsAuthenticated() {
-		return "", api.ErrorUnauthenticated
-	}
+	//if !t.IsAuthenticated() {
+	//	return "", api.ErrorUnauthenticated
+	//}
 	return t.token, nil
 }
 
@@ -77,9 +77,9 @@ func (t *TokenAuth) IsAuthenticated() bool {
 
 // Refresh attempts to refresh the token
 func (t *TokenAuth) Refresh() error {
-	if !t.IsAuthenticated() {
-		return api.ErrorUnauthenticated
-	}
+	//if !t.IsAuthenticated() {
+	//	return api.ErrorUnauthenticated
+	//}
 	r, err := Refresh(*t.baseURL, t.headers)
 	if err != nil {
 		return err
@@ -91,9 +91,9 @@ func (t *TokenAuth) Refresh() error {
 
 // Logout logs the current token out and removes it from the authentication type
 func (t *TokenAuth) Logout() error {
-	if !t.IsAuthenticated() {
-		return api.ErrorUnauthenticated
-	}
+	//if !t.IsAuthenticated() {
+	//	return api.ErrorUnauthenticated
+	//}
 	// Use a copy of the base URL
 	if err := Logout(*t.baseURL, t.headers); err != nil {
 		return err
@@ -107,9 +107,9 @@ func (t *TokenAuth) Logout() error {
 // GetHeaders returns HTTP headers used for requests if the method is currently authenticated.
 // Returns an error otherwise
 func (t *TokenAuth) GetHeaders() (http.Header, error) {
-	if !t.IsAuthenticated() {
-		return nil, api.ErrorUnauthenticated
-	}
+	//if !t.IsAuthenticated() {
+	//	return nil, api.ErrorUnauthenticated
+	//}
 	return t.headers, nil
 }
 
