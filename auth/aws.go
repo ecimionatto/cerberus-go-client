@@ -38,7 +38,6 @@ import (
 type AWSAuth struct {
 	token     string
 	region    string
-	roleARN   string
 	expiry    time.Time
 	baseURL   *url.URL
 	headers   http.Header
@@ -58,13 +57,10 @@ type iamIntermediateResp struct {
 // environment variable is set, it will be used over anything passed to this function.
 // It also expects you to have valid AWS credentials configured either by environment
 // variable or through a credentials config file
-func NewAWSAuth(cerberusURL, roleARN, region string) (*AWSAuth, error) {
+func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 	// Check for the environment variable if the user has set it
 	if os.Getenv("CERBERUS_URL") != "" {
 		cerberusURL = os.Getenv("CERBERUS_URL")
-	}
-	if len(roleARN) == 0 {
-		return nil, fmt.Errorf("Role ARN should not be empty")
 	}
 	if len(region) == 0 {
 		return nil, fmt.Errorf("Region should not be nil")
@@ -116,7 +112,6 @@ func (a *AWSAuth) authenticate() error {
 	// Encode the body to send in the request if one was given
 	body := &bytes.Buffer{}
 	err := json.NewEncoder(body).Encode(awsAuthBody{
-		PrincipalArn: a.roleARN,
 		Region:       a.region,
 	})
 	if err != nil {
