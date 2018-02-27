@@ -41,6 +41,7 @@ import (
 type AWSAuth struct {
 	token     string
 	region    string
+	roleARN   string
 	expiry    time.Time
 	baseURL   *url.URL
 	headers   http.Header
@@ -94,6 +95,7 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 	}
 	return &AWSAuth{
 		region:  region,
+		roleARN: roleARN,
 		baseURL: parsedURL,
 		headers: http.Header{
 			"X-Cerberus-Client": []string{api.ClientHeader},
