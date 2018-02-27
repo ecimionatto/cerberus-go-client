@@ -32,6 +32,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
+    "github.com/aws/aws-sdk-go/aws/ec2metadata"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
+	"strings"
 )
 
 // AWSAuth uses AWS roles and authentication to authenticate to Cerberus
@@ -58,6 +61,8 @@ type iamIntermediateResp struct {
 // It also expects you to have valid AWS credentials configured either by environment
 // variable or through a credentials config file
 func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
+	fmt.Printf("NEW AUTH")
+
 	// Check for the environment variable if the user has set it
 	if os.Getenv("CERBERUS_URL") != "" {
 		cerberusURL = os.Getenv("CERBERUS_URL")
@@ -73,6 +78,16 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 		return nil, err
 	}
 	sess, err := session.NewSession(&aws.Config{Region: aws.String(region)})
+	svc := ec2metadata.New(sess)
+	ec2IAMInfo, e := svc.IAMInfo()
+	if e != nil {
+		return nil, e
+	}
+
+	iamRole := strings.Replace(ec2IAMInfo.InstanceProfileArn, ":instance-profile/", ":role/", 1)
+	creds := stscreds.NewCredentials(sess, iamRole)
+
+	fmt.Printf("SEESION DEFAULT CREDENTIAL PROVIDER")
 
 	if err != nil {
 		return nil, fmt.Errorf("Unable to create AWS session: %s", err)
@@ -84,7 +99,7 @@ func NewAWSAuth(cerberusURL, region string) (*AWSAuth, error) {
 			"X-Cerberus-Client": []string{api.ClientHeader},
 			"Content-Type":      []string{"application/json"},
 		},
-		kmsClient: kms.New(sess),
+		kmsClient: kms.New(sess, &aws.Config{Credentials: creds}),
 	}, nil
 }
 
